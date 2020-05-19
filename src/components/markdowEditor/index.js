@@ -13,9 +13,4 @@ const MarkdowEditor = ({ value, handleChange, getMarkup }) => {
 	);
 };
 
-// MarkdowEditor.propTypes = {
-// 	value: PropTypes.string.isRequired,
-// 	handleChange: PropTypes.func.isRequired,
-// };
-
 export default MarkdowEditor;
