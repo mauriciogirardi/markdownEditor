@@ -3,9 +3,9 @@ import Header from '../header';
 
 import './style.css';
 
-const MarkdowEditor = ({ value, handleChange, getMarkup, handleSave }) => (
+const MarkdowEditor = ({ value, handleChange, getMarkup, isSaving }) => (
 	<div className="container">
-		<Header onSave={handleSave} />
+		<Header isSaving={isSaving} />
 		<textarea value={value} onChange={handleChange} autoFocus />
 
 		<div className="view" dangerouslySetInnerHTML={getMarkup()} />
