@@ -27,6 +27,15 @@ class App extends Component {
 		this.getMakup = () => {
 			return { __html: marked(this.state.value) };
 		};
+
+		this.handleSave = () => {
+			localStorage.setItem('md', this.state.value);
+		};
+	}
+
+	componentDidMount() {
+		const value = localStorage.getItem('md');
+		this.setState({ value });
 	}
 
 	render() {
@@ -35,6 +44,7 @@ class App extends Component {
 				value={this.state.value}
 				handleChange={this.handleChange}
 				getMarkup={this.getMakup}
+				handleSave={this.handleSave}
 			/>
 		);
 	}
