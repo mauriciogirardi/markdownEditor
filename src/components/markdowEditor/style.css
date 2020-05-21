@@ -1,25 +1,38 @@
 @import '~highlight.js/styles/dracula.css';
 .container {
-	width: 100%;
-	justify-content: space-between;
+	justify-content: center;
 	display: flex;
-	flex-wrap: wrap;
+	height: calc(100vh - 45px);
 }
 
 .container textarea {
 	padding: 16px;
 	resize: none;
-	height: calc(100vh - 90px);
+	height: calc(100% - 40px);
 	width: 100%;
-	max-width: 45%;
+	max-width: 600px;
 }
 
 .view {
 	color: #fff;
 	background-color: #333;
 	width: 100%;
-	max-width: 50%;
-	height: calc(100vh - 88px);
+	max-width: 600px;
+	height: calc(100% - 38px);
 	padding: 16px;
 	font-family: sans-serif;
+}
+
+@media (max-width: 1000px) {
+	.container {
+		flex-wrap: wrap;
+	}
+
+	.container textarea {
+		max-width: 100%;
+	}
+
+	.view {
+		max-width: 100%;
+	}
 }

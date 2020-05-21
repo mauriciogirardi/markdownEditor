@@ -1,5 +1,6 @@
 import React from 'react';
 import { FcRefresh, FcCheckmark } from 'react-icons/fc';
+import { RiDeleteBinLine } from 'react-icons/ri';
 
 import './style.css';
 
@@ -19,6 +20,12 @@ const Save = () => (
 	</>
 );
 
-export default ({ isSaving }) => (
-	<header className={'editor__header'}>{isSaving ? Saving() : Save()}</header>
+export default ({ isSaving, handleRemove }) => (
+	<header className={'editor__header'}>
+		<button className="del" onClick={handleRemove}>
+			Remover <RiDeleteBinLine className="icon_del" />
+		</button>
+
+		{isSaving ? Saving() : Save()}
+	</header>
 );

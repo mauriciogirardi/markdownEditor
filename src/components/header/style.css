@@ -2,9 +2,31 @@
 	color: #fff;
 	font-size: 20px;
 	width: 100%;
+	max-width: 1260px;
+	margin: 0 auto;
 	height: 45px;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	padding-right: 10px;
+}
+
+.del {
+	background-color: rgb(209, 28, 28);
+	border: 0;
+	margin-right: 50px;
+	font-size: 18px;
+	cursor: pointer;
+	padding: 5px 10px;
+	color: #fff;
+	outline: none;
+	transition: all 0.25s ease-in-out;
+}
+
+.del .icon_del {
+	position: relative;
+	top: 2px;
+}
+
+.del:hover {
+	background-color: rgb(255, 0, 0);
 }
