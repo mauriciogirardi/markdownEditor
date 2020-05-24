@@ -7,13 +7,18 @@ const MarkdowEditor = ({
 	value,
 	handleChange,
 	getMarkup,
-	isSaving,
-	handleRemove,
+	textareaRef,
+	...props
 }) => (
 	<section>
-		<Header isSaving={isSaving} handleRemove={handleRemove} />
+		<Header {...props} />
 		<div className="container">
-			<textarea value={value} onChange={handleChange} autoFocus />
+			<textarea
+				value={value}
+				onChange={handleChange}
+				autoFocus
+				ref={textareaRef}
+			/>
 
 			<div className="view" dangerouslySetInnerHTML={getMarkup()} />
 		</div>

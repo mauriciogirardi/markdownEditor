@@ -10,23 +10,12 @@
 	align-items: center;
 }
 
-.del {
-	background-color: rgb(209, 28, 28);
-	border: 0;
-	margin-right: 50px;
-	font-size: 18px;
-	cursor: pointer;
-	padding: 5px 10px;
-	color: #fff;
-	outline: none;
-	transition: all 0.25s ease-in-out;
+.icon_cre {
+	position: relative;
+	top: 3px;
 }
 
-.del .icon_del {
+.icon_del {
 	position: relative;
 	top: 2px;
-}
-
-.del:hover {
-	background-color: rgb(255, 0, 0);
 }
