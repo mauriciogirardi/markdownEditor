@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { FcRefresh, FcCheckmark } from 'react-icons/fc';
 
 const Saving = () => (
@@ -15,5 +17,9 @@ const Save = () => (
 
 const SaveMessage = ({ isSaving }) =>
 	isSaving !== null && <>{isSaving ? Saving() : Save()}</>;
+
+SaveMessage.propTypes = {
+	isSaving: PropTypes.bool,
+};
 
 export default SaveMessage;

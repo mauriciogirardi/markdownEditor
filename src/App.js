@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import MarkdowEditor from './components/markdowEditor';
+import { v4 } from 'node-uuid';
 import marked from 'marked';
+import MarkdowEditor from './components/views/markdowEditor';
 
 import('highlight.js').then(hljs => {
 	marked.setOptions({
@@ -16,9 +17,16 @@ import('highlight.js').then(hljs => {
 class App extends Component {
 	constructor() {
 		super();
-		this.state = {
+
+		this.clearState = () => ({
 			value: '',
+			id: v4(),
+		});
+
+		this.state = {
+			...this.clearState(),
 			isSaving: null,
+			files: {},
 		};
 
 		this.handleChange = e => {
@@ -34,30 +42,59 @@ class App extends Component {
 
 		this.handleSave = () => {
 			if (this.state.isSaving) {
-				localStorage.setItem('md', this.state.value);
+				localStorage.setItem(this.state.id, this.state.value);
 
-				this.setState({ isSaving: false });
+				this.setState({
+					isSaving: false,
+					files: {
+						...this.state.files,
+						[this.state.id]: this.state.value,
+					},
+				});
 			}
 		};
 
+		this.createNew = () => {
+			this.setState(this.clearState());
+			this.textarea.focus();
+		};
+
 		this.handleRemove = () => {
-			localStorage.removeItem('md');
-			this.setState({ value: '' });
+			localStorage.removeItem(this.state.id);
+
+			const { [this.state.id]: id, ...files } = this.state.files;
+			this.setState({ files });
+
+			this.createNew();
 		};
 
 		this.handleCreate = () => {
-			this.setState({ value: '' });
-			this.textarea.focus();
+			this.createNew();
 		};
 
 		this.textareaRef = node => {
 			this.textarea = node;
 		};
+
+		this.handleOpenFile = fileId => {
+			this.setState({
+				value: this.state.files[fileId],
+				id: fileId,
+			});
+		};
 	}
 
 	componentDidMount() {
-		const value = localStorage.getItem('md');
-		this.setState({ value: value || '' });
+		const files = Object.keys(localStorage);
+		this.setState({
+			files: files.reduce(
+				(acc, fileId) => ({
+					...acc,
+					[fileId]: localStorage.getItem(fileId),
+				}),
+				{}
+			),
+		});
 	}
 
 	componentDidUpdate() {
@@ -79,6 +116,8 @@ class App extends Component {
 				handleRemove={this.handleRemove}
 				handleCreate={this.handleCreate}
 				textareaRef={this.textareaRef}
+				files={this.state.files}
+				handleOpenFile={this.handleOpenFile}
 			/>
 		);
 	}

@@ -1,5 +1,6 @@
 import React from 'react';
-import Header from '../header';
+import PropTypes from 'prop-types';
+import Header from '../../header';
 
 import './style.css';
 
@@ -8,10 +9,12 @@ const MarkdowEditor = ({
 	handleChange,
 	getMarkup,
 	textareaRef,
+
 	...props
 }) => (
 	<section>
 		<Header {...props} />
+
 		<div className="container">
 			<textarea
 				value={value}
@@ -24,5 +27,12 @@ const MarkdowEditor = ({
 		</div>
 	</section>
 );
+
+MarkdowEditor.propTypes = {
+	value: PropTypes.string.isRequired,
+	handleChange: PropTypes.func.isRequired,
+	getMarkup: PropTypes.func.isRequired,
+	textareaRef: PropTypes.func.isRequired,
+};
 
 export default MarkdowEditor;
