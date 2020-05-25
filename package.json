@@ -1,7 +1,7 @@
 {
 	"name": "markdown-editor",
 	"version": "0.1.0",
-	"homepage": " https://mauriciogirardi.github.io/markdownEditor/",
+	"homepage": " https://www.mauriciogirardi.github.io/markdownEditor/",
 	"private": false,
 	"dependencies": {
 		"@testing-library/jest-dom": "^4.2.4",
