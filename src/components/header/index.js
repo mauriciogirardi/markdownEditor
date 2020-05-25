@@ -14,10 +14,20 @@ const Header = ({
 	isSaving,
 	handleRemove,
 	handleCreate,
+	handleChange,
+	title,
 	files,
 	handleOpenFile,
 }) => (
 	<header className={'editor__header'}>
+		<input
+			className="inp_title"
+			type="text"
+			value={title}
+			onChange={handleChange('title')}
+			placeholder="sem título"
+		/>
+
 		<Files files={files} handleOpenFile={handleOpenFile} />
 
 		<Button onClick={handleCreate} kind="create">
@@ -35,6 +45,7 @@ const Header = ({
 Header.propTypes = {
 	handleCreate: PropTypes.func.isRequired,
 	handleRemove: PropTypes.func.isRequired,
+	title: PropTypes.string,
 };
 
 export default Header;

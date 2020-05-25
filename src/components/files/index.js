@@ -39,7 +39,7 @@ const Files = ({ files, handleOpenFile }) => {
 									if (!handleOpenFile(fileId)) setModalIsOpen(false);
 								}}
 							>
-								{fileId}
+								{files[fileId].title}
 							</button>
 						</li>
 					))}

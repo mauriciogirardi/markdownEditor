@@ -13,12 +13,12 @@ const MarkdowEditor = ({
 	...props
 }) => (
 	<section>
-		<Header {...props} />
+		<Header {...props} handleChange={handleChange} />
 
 		<div className="container">
 			<textarea
 				value={value}
-				onChange={handleChange}
+				onChange={handleChange('value')}
 				autoFocus
 				ref={textareaRef}
 			/>

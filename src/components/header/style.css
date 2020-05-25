@@ -19,3 +19,29 @@
 	position: relative;
 	top: 2px;
 }
+
+.inp_title {
+	height: 29px;
+	font-size: 18px;
+	outline: none;
+	margin-right: 40px;
+	border: #ccc;
+	padding-left: 5px;
+}
+
+@media (max-width: 500px) {
+	.editor__header {
+		max-width: 350px;
+		padding: 2%;
+		display: block;
+		height: 210px;
+	}
+
+	.inp_title {
+		width: 100%;
+		margin-right: 0;
+		padding-left: 0;
+		margin-bottom: 10px;
+		text-align: center;
+	}
+}

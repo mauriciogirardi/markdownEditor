@@ -3,14 +3,16 @@ import PropTypes from 'prop-types';
 
 import { FcRefresh, FcCheckmark } from 'react-icons/fc';
 
+import './style.css';
+
 const Saving = () => (
-	<p>
+	<p className="cont-p">
 		Salvando <FcRefresh />
 	</p>
 );
 
 const Save = () => (
-	<p>
+	<p className="cont-p">
 		Salvo <FcCheckmark />
 	</p>
 );

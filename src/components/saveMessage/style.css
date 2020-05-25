@@ -1,0 +1,12 @@
+.cont-p {
+	width: 120px;
+}
+
+@media (max-width: 500px) {
+	.cont-p {
+		width: 100%;
+		text-align: center;
+		position: relative;
+		bottom: 15px;
+	}
+}

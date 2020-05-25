@@ -20,18 +20,20 @@ class App extends Component {
 
 		this.clearState = () => ({
 			value: '',
+			title: '',
 			id: v4(),
 		});
 
 		this.state = {
 			...this.clearState(),
 			isSaving: null,
+			title: '',
 			files: {},
 		};
 
-		this.handleChange = e => {
+		this.handleChange = field => e => {
 			this.setState({
-				value: e.target.value,
+				[field]: e.target.value,
 				isSaving: true,
 			});
 		};
@@ -42,14 +44,19 @@ class App extends Component {
 
 		this.handleSave = () => {
 			if (this.state.isSaving) {
-				localStorage.setItem(this.state.id, this.state.value);
+				const files = {
+					...this.state.files,
+					[this.state.id]: {
+						title: this.state.title || 'sem título',
+						content: this.state.value,
+					},
+				};
+
+				localStorage.setItem('markdown-editor', JSON.stringify(files));
 
 				this.setState({
 					isSaving: false,
-					files: {
-						...this.state.files,
-						[this.state.id]: this.state.value,
-					},
+					files,
 				});
 			}
 		};
@@ -60,9 +67,9 @@ class App extends Component {
 		};
 
 		this.handleRemove = () => {
-			localStorage.removeItem(this.state.id);
-
 			const { [this.state.id]: id, ...files } = this.state.files;
+
+			localStorage.setItem('markdown-editor', JSON.stringify(files));
 			this.setState({ files });
 
 			this.createNew();
@@ -78,23 +85,16 @@ class App extends Component {
 
 		this.handleOpenFile = fileId => {
 			this.setState({
-				value: this.state.files[fileId],
+				title: this.state.files[fileId].title,
+				value: this.state.files[fileId].content,
 				id: fileId,
 			});
 		};
 	}
 
 	componentDidMount() {
-		const files = Object.keys(localStorage);
-		this.setState({
-			files: files.reduce(
-				(acc, fileId) => ({
-					...acc,
-					[fileId]: localStorage.getItem(fileId),
-				}),
-				{}
-			),
-		});
+		const files = JSON.parse(localStorage.getItem('markdown-editor'));
+		this.setState({ files });
 	}
 
 	componentDidUpdate() {
@@ -118,6 +118,7 @@ class App extends Component {
 				textareaRef={this.textareaRef}
 				files={this.state.files}
 				handleOpenFile={this.handleOpenFile}
+				title={this.state.title}
 			/>
 		);
 	}

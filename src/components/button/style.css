@@ -25,3 +25,12 @@
 .-create:hover {
 	background-color: rgb(0, 26, 255);
 }
+
+@media (max-width: 500px) {
+	.btn {
+		width: 100%;
+		margin-right: 0;
+
+		margin-bottom: 10px;
+	}
+}

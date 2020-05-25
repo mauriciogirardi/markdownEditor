@@ -51,3 +51,11 @@ h2 {
 	transform: scale(1.1);
 	background-color: rgb(22, 22, 22);
 }
+
+@media (max-width: 500px) {
+	.btn-modal {
+		width: 100%;
+		margin-bottom: 10px;
+		margin-right: 0;
+	}
+}
